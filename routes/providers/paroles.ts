@@ -1,9 +1,17 @@
 import { cheerio } from "https://deno.land/x/cheerio@1.0.4/mod.ts";
 
 
-const data = await fetch('https://www.paroles.net/juice-wrld/paroles-bandit')
-const rawdat = await data.text()
-const $ = cheerio.load(rawdat)
+export async function paroles(artist:string,title:string) {
+  console.log(artist);
 
-let t = $(".song-text").text()
-console.log(t)
+  let w = artist.replace(" ", "-")
+  let y = title.replace(" ", "-")
+  const data = await fetch(`https://www.paroles.net/${w}/paroles-${y}`)
+  const rawdat = await data.text()
+  const $ = cheerio.load(rawdat)
+
+  let t = $(".song-text").text()
+  console.log(t)
+  return(t)
+
+}
