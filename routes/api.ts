@@ -12,18 +12,14 @@ async function parseInput(name:string) {
   return({title:y['data'][0]['title'],artist:y['data'][0]['artist']['name']}) // 'title' can be replaced with 'title_short'
 
 }
+api.get("/lyrics/:name", async (req,res) => {
 
-api.get("/rip/:id", async function r(req, res) {
-  let data = await parseInput(req.params.id)
+  const parsedName = await parseInput(req.params.name)
 
-  let lyrics = await paroles(data['artist'], data['title'])
-  res.send({lyrics:lyrics})
-})
+  let [aResult, bResult] = await Promise.all([paroles(parsedName['artist'],parsedName['title']), elyrics(parsedName['artist'],parsedName['title'])]);
+
+  res.send({lyrics1:aResult, lyrics2:bResult})
 
 
-api.get("/rip2/:id", async function r(req, res) {
-  let data = await parseInput(req.params.id)
 
-  let lyrics = await elyrics(data['artist'], data['title'])
-  res.send({lyrics:lyrics})
 })

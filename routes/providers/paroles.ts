@@ -10,7 +10,6 @@ export async function paroles(artist:string,title:string) {
   const $ = cheerio.load(rawdat)
 
   let t = $(".song-text").text()
-  console.log(t)
   return(t)
 
 }
