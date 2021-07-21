@@ -1,6 +1,7 @@
 import { Router } from "https://deno.land/x/opine/mod.ts";
 import { paroles } from "./providers/paroles.ts";
 import { elyrics } from "./providers/elyrics.ts";
+import { azlyrics } from "./providers/azlyrics.ts";
 
 export const api = new Router
 
@@ -16,9 +17,9 @@ api.get("/lyrics/:name", async (req,res) => {
 
   const parsedName = await parseInput(req.params.name)
 
-  let [aResult, bResult] = await Promise.all([paroles(parsedName['artist'],parsedName['title']), elyrics(parsedName['artist'],parsedName['title'])]);
+  let [aResult, bResult, cResult] = await Promise.all([paroles(parsedName['artist'],parsedName['title']), elyrics(parsedName['artist'],parsedName['title']), azlyrics(parsedName['artist'],parsedName['title'])]);
 
-  res.send({lyrics1:aResult, lyrics2:bResult})
+  res.send({lyrics1:aResult, lyrics2:bResult, lyrics3:cResult})
 
 
 
