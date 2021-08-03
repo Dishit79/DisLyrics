@@ -1,16 +1,18 @@
 import { cheerio } from "https://deno.land/x/cheerio@1.0.4/mod.ts";
 
 
-
+//Parses inputs for usage
 function parseArtistTitle(artist:string, title:string) {
   let w = artist.replace(/ /g,"-")
   let y = title.replace(/ /g,"-")
   return [w, y]
 }
 
+//Cleans provider's output
 function test(params:string) {
   let f3 = params.replace(/\n\n/g,"\n")
   f3 = f3.replace(/\n\n/g,"\n")
+  f3 = f3.replace(/^.*Paroles de +la +chanson | par/g,"")
   return(f3);
 }
 
@@ -21,8 +23,7 @@ export async function paroles(artist:string,title:string) {
   const readableHtml = await rawHtml.text()
   const $ = cheerio.load(readableHtml)
   let t = $(".song-text").text()
-  let f3 = test(t)
-  return(f3)
+  return(test(t))
 }
 
 export async function elyrics(artist:string,title:string) {
@@ -43,7 +44,7 @@ export async function azlyrics(artist:string, title:string) {
   const songUrl = $('td > a').attr('href')
 
   if (!songUrl) {
-    return {lyrics:'non'}
+    return ("Nothing found")
   }
 
   const rawHtml1 = await fetch(songUrl!)
