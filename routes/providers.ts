@@ -3,8 +3,8 @@ import { cheerio } from "https://deno.land/x/cheerio@1.0.4/mod.ts";
 
 //Parses inputs for usage
 function parseArtistTitle(artist:string, title:string) {
-  let w = artist.replace(/ /g,"-")
-  let y = title.replace(/ /g,"-")
+  let w = artist.replace(/ /g,"-").toLowerCase()
+  let y = title.replace(/ /g,"-").toLowerCase()
   return [w, y]
 }
 

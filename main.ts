@@ -7,20 +7,16 @@ import { RateLimit } from "./ratelimit.ts"
 const app = opine()
 const port = 5000
 app.set("view cache", false)
+app.set('trust proxy', true)
 const __dirname = dirname(import.meta.url)
 app.use("/api", api)
 
 app.get("/", (req,res)=> {
-  res.send('Hello world')
-})
-
-
-const rr = RateLimit()
-
-app.get("/test", rr, async (req,res)=> {
   res.sendFile(join(__dirname,'./public/index.html'))
 })
 
+
+//const rr = RateLimit({resetTime: 10 * 1000})
 
 
 
