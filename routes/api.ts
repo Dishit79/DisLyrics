@@ -10,8 +10,12 @@ async function parseInput(name:string) {
     return({title:'None Result',artist:'None Result',cover:'None Result'})
   }
   return({title:data['data'][0]['title'],artist:data['data'][0]['artist']['name'], cover:data['data'][0]['album']['cover']}) // 'title' can be replaced with 'title_short'
-
 }
+
+api.get("/", (req,res) => {
+  res.send({endpoint:{lyrics:'/lyrics/search', recommendations:'coming soon'}})
+})
+
 
 //main endpoint to get lyrics
 api.get("/lyrics/search", async (req,res) => {
@@ -24,11 +28,12 @@ api.get("/lyrics/search", async (req,res) => {
   const parsedName = await parseInput(req.query.q)
 
   let [aResult, bResult, cResult] = await Promise.all([paroles(parsedName['artist'],parsedName['title']), elyrics(parsedName['artist'],parsedName['title']), azlyrics(parsedName['artist'],parsedName['title'])]);
-  res.send({title:parsedName['title'],artist:parsedName['artist'],cover:parsedName['cover'],lyrics:[aResult, bResult, cResult], time_taken:(Date.now() - startTime)/1000})
+  res.send({title:parsedName.title,artist:parsedName.artist,cover:parsedName.cover,lyrics:[aResult, bResult, cResult], time_taken:(Date.now() - startTime)/1000})
   //await logDiscord(req, parsedName.artist, parsedName.title, startTime, req.query.q)
 })
 
 
+//Discord webhook logger
 async function logDiscord(req:any,  artist:string, title:string, startTime:number, originalQuery:string) {
   await fetch('https://discord.com/api/webhooks/871867199948746833/y8P440FiSohnLe7ytZfhPR0S2-0NdguMNLpZ0CnvNinGQED2TPBdBfjvphpqJ_ww0Y-A', {
     method: 'post',
