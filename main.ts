@@ -18,7 +18,13 @@ app.get("/", (req,res)=> {
 
 //const rr = RateLimit({resetTime: 10 * 1000})
 
+app.get("/", (req,res)=> {
+  res.sendFile(join(__dirname,'./public/index.html'))
+})
 
+app.get("/lyrics", (req,res)=> {
+  res.sendFile(join(__dirname,'./public/lyrics.html'))
+})
 
 app.listen(port);
 console.log(`Opine started on localhost:${port}`)
