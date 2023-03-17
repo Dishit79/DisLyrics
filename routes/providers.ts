@@ -1,6 +1,5 @@
-import { cheerio } from "https://deno.land/x/cheerio@1.0.4/mod.ts";
-
-
+// import { cheerio } from "https://deno.land/x/cheerio@1.0.4/mod.ts";
+import cheerio from "npm:cheerio@1.0.0-rc.12";
 //Parses inputs for usage
 function parseArtistTitle(artist:string, title:string) {
   let w = artist.replace(/ /g,"-").toLowerCase()

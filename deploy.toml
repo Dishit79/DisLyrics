@@ -1,0 +1,7 @@
+name = "DisLyrics"
+runtime = "Deno"
+entry = "/root/.deno/bin/deno"
+
+[instructions]
+ent_file = "/app/main.ts"
+
