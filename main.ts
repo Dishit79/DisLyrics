@@ -11,19 +11,10 @@ app.set('trust proxy', true)
 const __dirname = dirname(import.meta.url)
 app.use("/api", api)
 
-app.get("/", (req,res)=> {
-  res.sendFile(join(__dirname,'./public/index.html'))
-})
-
-
 //const rr = RateLimit({resetTime: 10 * 1000})
 
 app.get("/", (req,res)=> {
   res.sendFile(join(__dirname,'./public/index.html'))
-})
-
-app.get("/lyrics", (req,res)=> {
-  res.sendFile(join(__dirname,'./public/lyrics.html'))
 })
 
 app.listen(port);

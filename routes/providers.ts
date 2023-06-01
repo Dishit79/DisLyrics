@@ -1,5 +1,4 @@
-import { cheerio } from "https://deno.land/x/cheerio@1.0.4/mod.ts";
-
+import { cheerio } from "https://deno.land/x/denocheerio/mod.ts";
 
 //Parses inputs for usage
 function parseArtistTitle(artist:string, title:string) {

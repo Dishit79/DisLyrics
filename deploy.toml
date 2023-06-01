@@ -1,0 +1,10 @@
+name = "dislyrics"
+runtime = "/root/.deno/bin/deno"
+
+[instructions]
+cmd = "run"
+arg = "--allow-all"
+ent_file = "/app/main.ts"
+
+[modules]
+cmd = "null"
