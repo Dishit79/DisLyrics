@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 name = "dislyrics"
 runtime = "/root/.deno/bin/deno"
 
@@ -8,3 +9,12 @@ ent_file = "/app/main.ts"
 
 [modules]
 cmd = "null"
+=======
+name = "DisLyrics"
+runtime = "Deno"
+entry = "/root/.deno/bin/deno"
+
+[instructions]
+ent_file = "/app/main.ts"
+
+>>>>>>> 18b714e80fbdac83d363b354f8501bbf1fecb5a1
